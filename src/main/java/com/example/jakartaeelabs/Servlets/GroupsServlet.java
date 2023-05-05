@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import org.apache.commons.lang.StringEscapeUtils;
 import java.io.IOException;
 
 @WebServlet(name = "groupsServlet", value = "/groups")
@@ -14,6 +14,10 @@ public class GroupsServlet extends HttpServlet {
 
     public void init() {
     }
+
+//    Example of escaping html for prevent XSS
+//    String text = "<script>alert('Hello');</script>";
+//    String escapedText = StringEscapeUtils.escapeHtml(text);
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
