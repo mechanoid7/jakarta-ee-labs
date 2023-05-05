@@ -2,16 +2,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Users</title>
+  <title>Groups</title>
   <link rel="stylesheet" href="styles/main-page.css">
 </head>
 <body>
-<%--<img class="header" src="images/jakarta-ee.webp" alt="">--%>
-<h1 class="title">Select role</h1>
+<img class="header" src="images/jakarta-ee.webp" alt="">
+<h1 class="title">Groups</h1>
 <div class="users">
   <a href="nikita">Employee of the dean's office</a>
   <a href="vlad">Student</a>
-  <a href="groups">groups</a>
 </div>
 </body>
 </html>
