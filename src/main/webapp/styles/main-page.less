@@ -1,0 +1,35 @@
+@import "vars";
+
+body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+    justify-content: center;
+    width: calc(100% - 10px);
+}
+
+.roles {
+    display: flex;
+    gap: 20px;
+
+    a {
+        align-items: center;
+        background: @tale-bg-color;
+        border-radius: 5px;
+        border: @base-border;
+        color: @text-color;
+        display: flex;
+        font-size: 20px;
+        justify-content: center;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        width: 50%;
+
+        &:hover {
+            background: @tale-bg-hover-color;
+        }
+    }
+}

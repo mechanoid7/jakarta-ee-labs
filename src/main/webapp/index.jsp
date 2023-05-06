@@ -2,14 +2,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Users</title>
-  <link rel="stylesheet" href="styles/main-page.css">
+    <title>Users</title>
+    <link rel="stylesheet" href="styles/main-page.less">
+    <link rel="stylesheet/less" type="text/css" href="styles/main-page.less"/>
+    <script src="scripts/utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/less"></script>
 </head>
 <body>
-<%--<img class="header" src="images/jakarta-ee.webp" alt="">--%>
 <h1 class="title">Select role</h1>
-<div class="users">
-  <a href="groups">groups</a>
+<div class="roles">
+    <a href="templates/groups.jsp" onclick="setEditableCookie(false)">Student</a>
+    <a href="templates/groups.jsp" onclick="setEditableCookie(true)">Employee of the dean's office</a>
 </div>
 </body>
 </html>
