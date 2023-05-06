@@ -42,8 +42,7 @@
 <div class="list">
     <c:forEach var="student" items="${students}">
         <div class="item">
-            <div class="item-name">${student.firstName}</div>
-            <div class="item-name">${student.lastName}</div>
+            <div class="item-name">${student.firstName} ${student.lastName}</div>
             <c:if test="${editable}">
                 <img class="icon" src="../images/icons/edit.png" alt="">
                 <img class="icon" src="../images/icons/delete.png" alt="">
