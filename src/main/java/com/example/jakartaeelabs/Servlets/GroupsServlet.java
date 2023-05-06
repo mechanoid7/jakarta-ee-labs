@@ -19,6 +19,9 @@ public class GroupsServlet extends HttpServlet {
 //    String text = "<script>alert('Hello');</script>";
 //    String escapedText = StringEscapeUtils.escapeHtml(text);
 
+
+//    TODO: add return statuses, like "response.setStatus(HttpServletResponse.SC_OK);"
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         // get
