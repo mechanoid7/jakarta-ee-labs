@@ -1,27 +1,5 @@
-<%@ page import="com.example.jakartaeelabs.Utils.CookieUtils" %>
-<%@ page import="java.util.Objects" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.example.jakartaeelabs.Models.Student" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%--<%!--%>
-<%--    Boolean editable;--%>
-<%--    List<Student> students_IO_99;--%>
-<%--%>--%>
-
-<%--<%--%>
-<%--    editable = Objects.equals(CookieUtils.getCookie(request, CookieUtils.EDITABLE_COOKIE_PARAM_NAME), "true");--%>
-<%--    request.setAttribute("editable", editable);--%>
-
-<%--    students_IO_99 = new ArrayList<>();--%>
-<%--    students_IO_99.add(new Student("IO-99", "John", "Doe"));--%>
-<%--    students_IO_99.add(new Student("IO-99", "Jane", "Smith"));--%>
-<%--    students_IO_99.add(new Student("IO-99", "Bob", "Johnson"));--%>
-
-<%--    request.setAttribute("students", students_IO_99);--%>
-<%--%>--%>
 
 <!DOCTYPE html>
 <html>

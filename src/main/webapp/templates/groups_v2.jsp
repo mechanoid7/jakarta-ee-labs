@@ -6,7 +6,6 @@
     <title>Groups</title>
     <link rel="stylesheet/less" type="text/css" href="../styles/groups.less"/>
     <link rel="stylesheet/less" type="text/css" href="../styles/items-list.less"/>
-    <script src="../scripts/routing.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/less"></script>
 </head>
 <body>

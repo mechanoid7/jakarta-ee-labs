@@ -9,7 +9,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.eclipse.tags.shaded.org.apache.xpath.operations.Bool;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,6 +17,12 @@ import java.util.Objects;
 
 @WebServlet(name = "groupsServlet", value = "/groups")
 public class GroupsController extends HttpServlet {
+    //    TODO: add return statuses, like "response.setStatus(HttpServletResponse.SC_OK);"
+
+    //    TODO: Add escaping text on edit
+    //    Example of escaping html for prevent XSS:
+    //    String text = "<script>alert('Hello');</script>";
+    //    String escapedText = StringEscapeUtils.escapeHtml(text);
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Group> groups = new ArrayList<>();
@@ -34,7 +39,6 @@ public class GroupsController extends HttpServlet {
         groups.add(new Group("IO-10", students_IO_10));
 
 
-
         Boolean editable = Objects.equals(CookieUtils.getCookie(req, CookieUtils.EDITABLE_COOKIE_PARAM_NAME), "true");
 
         req.setAttribute("groups", groups);
@@ -42,5 +46,12 @@ public class GroupsController extends HttpServlet {
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/templates/groups_v2.jsp");
         requestDispatcher.forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp);
+
+        // create if haven`t ID in DB, else - edit
     }
 }
