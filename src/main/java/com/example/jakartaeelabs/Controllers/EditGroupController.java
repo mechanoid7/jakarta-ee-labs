@@ -21,6 +21,9 @@ public class EditGroupController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        TODO: add get Group from db
 
+        String id = req.getParameter("id"); // group id, if exist - return group with ID {new Group("name", "id")}
+
+
         Group group = new Group("IO-test");
 
         boolean editable = Objects.equals(CookieUtils.getCookie(req, CookieUtils.EDITABLE_COOKIE_PARAM_NAME), "true");

@@ -13,6 +13,12 @@ public class Student {
         this.id = UUID.randomUUID().toString();
     }
 
+    public Student(String firstName, String lastName, String id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.id = id;
+    }
+
     public String getId() {
         return id;
     }

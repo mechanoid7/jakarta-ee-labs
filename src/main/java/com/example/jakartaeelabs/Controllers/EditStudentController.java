@@ -22,7 +22,8 @@ public class EditStudentController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        TODO: add get Student from db if 'id' exists
         String groupId = req.getParameter("groupId");
-
+        String id = req.getParameter("id"); // student id, if exist - return student with ID {new Student("first name", "last name", "id")}
+        
         Student student = new Student("John", "Doe");
 
         boolean editable = Objects.equals(CookieUtils.getCookie(req, CookieUtils.EDITABLE_COOKIE_PARAM_NAME), "true");
