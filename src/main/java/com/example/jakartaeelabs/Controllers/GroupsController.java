@@ -54,4 +54,11 @@ public class GroupsController extends HttpServlet {
 
         // create if haven`t ID in DB, else - edit
     }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id = req.getParameter("id");
+
+//        delete here
+    }
 }

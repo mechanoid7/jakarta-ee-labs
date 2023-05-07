@@ -45,5 +45,16 @@ public class StudentsController extends HttpServlet {
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/templates/students.jsp");
         requestDispatcher.forward(req, resp);
+
+//        TODO: add forward to 404 if group not found
+//        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/templates/404.jsp");
+//        requestDispatcher.forward(req, resp);
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id = req.getParameter("id");
+
+//        delete here
     }
 }

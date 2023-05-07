@@ -1,4 +1,5 @@
 const EDITABLE_COOKIE = "editable"
+
 function setEditableCookie(editable = false) {
     document.cookie = EDITABLE_COOKIE + "=" + editable
 }

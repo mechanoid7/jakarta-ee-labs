@@ -30,4 +30,8 @@ public class Group {
     public void setStudents(List<Student> students) {
         this.students = students;
     }
+
+    public String getId() {
+        return id;
+    }
 }

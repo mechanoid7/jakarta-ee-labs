@@ -7,6 +7,7 @@
     <link rel="stylesheet/less" type="text/css" href="../styles/groups.less"/>
     <link rel="stylesheet/less" type="text/css" href="../styles/items-list.less"/>
     <script src="https://cdn.jsdelivr.net/npm/less"></script>
+    <script src="../scripts/api.js"></script>
 </head>
 <body>
 <div class="header">
@@ -18,12 +19,12 @@
 <div class="list">
     <c:forEach var="group" items="${requestScope.groups}">
         <div class="item">
-            <a class="item-body" href="${pageContext.request.contextPath}/students?group=${group.name}">
-                <div class="item-name">${group.name}</div>
+            <a class="item-body" href="${pageContext.request.contextPath}/students?group=${group.getName()}">
+                <div class="item-name">${group.getName()}</div>
             </a>
             <c:if test="${requestScope.editable}">
                 <img class="icon" src="../images/icons/edit.png" alt="">
-                <img class="icon" src="../images/icons/delete.png" alt="">
+                <img class="icon" src="../images/icons/delete.png" alt="" onclick="deleteGroup('${group.getId()}')">
             </c:if>
         </div>
     </c:forEach>
