@@ -13,6 +13,9 @@
 %>
 
 <%
+
+
+
     editable = Objects.equals(CookieUtils.getCookie(request, CookieUtils.EDITABLE_COOKIE_PARAM_NAME), "true");
     request.setAttribute("editable", editable);
 
@@ -39,6 +42,7 @@
     <title>Groups</title>
     <link rel="stylesheet/less" type="text/css" href="../styles/groups.less"/>
     <link rel="stylesheet/less" type="text/css" href="../styles/items-list.less"/>
+    <script src="../scripts/routing.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/less"></script>
 </head>
 <body>
@@ -50,15 +54,13 @@
 </div>
 <div class="list">
     <c:forEach var="group" items="${groups}">
-        <a class="link-container" href="students.jsp">
-            <div class="item">
+            <div class="item" onclick="routeToPage('students.jsp')">
                 <div class="item-name">${group.name}</div>
                 <c:if test="${editable}">
                     <img class="icon" src="../images/icons/edit.png" alt="">
                     <img class="icon" src="../images/icons/delete.png" alt="">
                 </c:if>
             </div>
-        </a>
     </c:forEach>
 </div>
 </body>

@@ -11,8 +11,8 @@
 <body>
 <h1 class="title">Select role</h1>
 <div class="roles">
-    <a href="templates/groups.jsp" onclick="setEditableCookie(false)">Student</a>
-    <a href="templates/groups.jsp" onclick="setEditableCookie(true)">Employee of the dean's office</a>
+    <a href="groups" onclick="setEditableCookie(false)">Student</a>
+    <a href="groups" onclick="setEditableCookie(true)">Employee of the dean's office</a>
 </div>
 </body>
 </html>

@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringEscapeUtils;
 import java.io.IOException;
 
-@WebServlet(name = "groupsServlet", value = "/groups")
+@WebServlet(name = "groupsServlet", value = "/groups123")
 public class GroupsServlet extends HttpServlet {
 
     public void init() {
