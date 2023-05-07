@@ -29,19 +29,6 @@
         </label>
         <button type="submit">Save</button>
     </form>
-
-
-<%--    <c:forEach var="group" items="${requestScope.groups}">--%>
-<%--        <div class="item">--%>
-<%--            <a class="item-body" href="${pageContext.request.contextPath}/students?group=${group.getName()}">--%>
-<%--                <div class="item-name">${group.getName()}</div>--%>
-<%--            </a>--%>
-<%--            <c:if test="${requestScope.editable}">--%>
-<%--                <img class="icon" src="../images/icons/edit.png" alt="">--%>
-<%--                <img class="icon" src="../images/icons/delete.png" alt="" onclick="deleteGroup('${group.getId()}')">--%>
-<%--            </c:if>--%>
-<%--        </div>--%>
-<%--    </c:forEach>--%>
 </div>
 </body>
 </html>
