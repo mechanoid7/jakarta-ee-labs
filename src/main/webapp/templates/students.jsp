@@ -21,10 +21,12 @@
     <c:forEach var="student" items="${requestScope.students}">
         <div class="item">
             <div class="item-body">
-                <div class="item-name">${student.firstName} ${student.lastName}</div>
+                <div class="item-name">${student.getFirstName()} ${student.getLastName()}</div>
             </div>
             <c:if test="${requestScope.editable}">
-                <img class="icon" src="../images/icons/edit.png" alt="">
+                <a href="${pageContext.request.contextPath}/edit-student?id=${student.getId()}">
+                    <img class="icon" src="../images/icons/edit.png" alt="">
+                </a>
                 <img class="icon" src="../images/icons/delete.png" alt="" onclick="deleteStudent('${student.getId()}')">
             </c:if>
         </div>

@@ -26,17 +26,9 @@ public class GroupsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Group> groups = new ArrayList<>();
-        List<Student> students_IO_99 = new ArrayList<>();
-        students_IO_99.add(new Student("IO-99", "John", "Doe"));
-        students_IO_99.add(new Student("IO-99", "Jane", "Smith"));
-        students_IO_99.add(new Student("IO-99", "Bob", "Johnson"));
-        List<Student> students_IO_10 = new ArrayList<>();
-        students_IO_10.add(new Student("IO-99", "John", "Doe"));
-        students_IO_10.add(new Student("IO-99", "Jane", "Smith"));
-        students_IO_10.add(new Student("IO-99", "Bob", "Johnson"));
 
-        groups.add(new Group("IO-99", students_IO_99));
-        groups.add(new Group("IO-10", students_IO_10));
+        groups.add(new Group("IO-99"));
+        groups.add(new Group("IO-10"));
 
 
         Boolean editable = Objects.equals(CookieUtils.getCookie(req, CookieUtils.EDITABLE_COOKIE_PARAM_NAME), "true");
@@ -46,13 +38,6 @@ public class GroupsController extends HttpServlet {
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/templates/groups.jsp");
         requestDispatcher.forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
-
-        // create if haven`t ID in DB, else - edit
     }
 
     @Override

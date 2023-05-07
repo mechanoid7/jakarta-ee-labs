@@ -23,7 +23,9 @@
                 <div class="item-name">${group.getName()}</div>
             </a>
             <c:if test="${requestScope.editable}">
-                <img class="icon" src="../images/icons/edit.png" alt="">
+                <a href="${pageContext.request.contextPath}/edit-group?id=${group.getId()}">
+                    <img class="icon" src="../images/icons/edit.png" alt="">
+                </a>
                 <img class="icon" src="../images/icons/delete.png" alt="" onclick="deleteGroup('${group.getId()}')">
             </c:if>
         </div>
