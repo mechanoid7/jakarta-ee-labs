@@ -1,6 +1,5 @@
 <%@ page import="com.example.jakartaeelabs.Utils.CookieUtils" %>
 <%@ page import="java.util.Objects" %>
-<%@ page import="com.example.jakartaeelabs.Models.Group" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.jakartaeelabs.Models.Student" %>
 <%@ page import="java.util.ArrayList" %>
