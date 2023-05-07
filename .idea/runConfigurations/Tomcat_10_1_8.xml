@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Tomcat 10.1.8" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.8" ALTERNATIVE_JRE_ENABLED="false">
-    <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8070/" />
+    <option name="START_JAVASCRIPT_DEBUGGER" value="true" />
     <deployment>
       <artifact name="jakarta-ee-labs:war exploded">
         <settings>
@@ -11,7 +11,7 @@
     <server-settings>
       <option name="BASE_DIRECTORY_NAME" value="d3e894e7-4306-44a0-a33f-ed5b53b914aa" />
       <option name="HTTP_PORT" value="8070" />
-      <option name="JNDI_PORT" value="2010" />
+      <option name="JNDI_PORT" value="4381" />
     </server-settings>
     <predefined_log_file enabled="true" id="Tomcat" />
     <predefined_log_file enabled="true" id="Tomcat Catalina" />

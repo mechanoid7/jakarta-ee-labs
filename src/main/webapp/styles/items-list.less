@@ -1,0 +1,43 @@
+@import "vars";
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: max(250px, 30vw);
+
+    .link-container {
+        text-decoration: unset;
+    }
+
+    .item {
+        background: @tale-bg-color;
+        border-radius: 5px;
+        border: @base-border;
+        cursor: pointer;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 5px;
+        padding: 5px 10px;
+        width: 100%;
+
+        &:hover {
+            background: @tale-bg-hover-color;
+        }
+
+        .icon {
+            border-radius: 5px;
+            border: 1px solid @border-second-color;
+            cursor: pointer;
+            flex: 0.1;
+            height: @icon-size;
+            padding: 2px;
+            width: @icon-size;
+
+            &:hover {
+                background: @tale-bg-hover-second-color;
+            }
+        }
+    }
+}
+
