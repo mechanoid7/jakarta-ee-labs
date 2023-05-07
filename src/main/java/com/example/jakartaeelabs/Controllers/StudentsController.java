@@ -43,7 +43,7 @@ public class StudentsController extends HttpServlet {
         req.setAttribute("students", students);
         req.setAttribute("editable", editable);
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/templates/students_v2.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/templates/students.jsp");
         requestDispatcher.forward(req, resp);
     }
 }

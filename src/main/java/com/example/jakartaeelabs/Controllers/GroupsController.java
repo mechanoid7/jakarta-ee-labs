@@ -44,7 +44,7 @@ public class GroupsController extends HttpServlet {
         req.setAttribute("groups", groups);
         req.setAttribute("editable", editable);
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/templates/groups_v2.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/templates/groups.jsp");
         requestDispatcher.forward(req, resp);
     }
 
