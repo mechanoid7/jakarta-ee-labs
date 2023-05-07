@@ -11,25 +11,34 @@
     }
 
     .item {
-        background: @tale-bg-color;
-        border-radius: 5px;
-        border: @base-border;
-        cursor: pointer;
+        align-items: center;
         display: flex;
         flex-wrap: nowrap;
         gap: 5px;
-        padding: 5px 10px;
         width: 100%;
 
-        &:hover {
-            background: @tale-bg-hover-color;
+        &-body {
+            background: @tale-bg-color;
+            border-radius: 5px;
+            border: @base-border;
+            cursor: pointer;
+            display: flex;
+            flex-wrap: nowrap;
+            flex: 1;
+            gap: 5px;
+            height: 100%;
+            padding: 5px 10px;
+            text-decoration: none;
+
+            &:hover {
+                background: @tale-bg-hover-color;
+            }
         }
 
         .icon {
             border-radius: 5px;
             border: 1px solid @border-second-color;
             cursor: pointer;
-            flex: 0.1;
             height: @icon-size;
             padding: 2px;
             width: @icon-size;

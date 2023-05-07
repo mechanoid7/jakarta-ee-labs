@@ -1,64 +1,36 @@
-<%@ page import="com.example.jakartaeelabs.Utils.CookieUtils" %>
-<%@ page import="java.util.Objects" %>
-<%@ page import="com.example.jakartaeelabs.Models.Group" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.example.jakartaeelabs.Models.Student" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%!
-    Boolean editable;
-    List<Group> groups;
-%>
-
-<%
-    editable = Objects.equals(CookieUtils.getCookie(request, CookieUtils.EDITABLE_COOKIE_PARAM_NAME), "true");
-    request.setAttribute("editable", editable);
-
-//    TODO: get groups from any storage, rm hardcode
-
-    List<Student> students_IO_99 = new ArrayList<>();
-    students_IO_99.add(new Student("IO-99", "John", "Doe"));
-    students_IO_99.add(new Student("IO-99", "Jane", "Smith"));
-    students_IO_99.add(new Student("IO-99", "Bob", "Johnson"));
-    List<Student> students_IO_10 = new ArrayList<>();
-    students_IO_10.add(new Student("IO-99", "John", "Doe"));
-    students_IO_10.add(new Student("IO-99", "Jane", "Smith"));
-    students_IO_10.add(new Student("IO-99", "Bob", "Johnson"));
-
-    groups = new ArrayList<>();
-    groups.add(new Group("IO-99", students_IO_99));
-    groups.add(new Group("IO-10", students_IO_10));
-    request.setAttribute("groups", groups);
-%>
-
-<!DOCTYPE html>
 <html>
 <head>
     <title>Groups</title>
     <link rel="stylesheet/less" type="text/css" href="../styles/groups.less"/>
     <link rel="stylesheet/less" type="text/css" href="../styles/items-list.less"/>
     <script src="https://cdn.jsdelivr.net/npm/less"></script>
+    <script src="../scripts/api.js"></script>
 </head>
 <body>
 <div class="header">
     <h1 class="title">Groups</h1>
-    <c:if test="${editable}">
-        <img class="icon" src="../images/icons/add.png" alt="">
+    <c:if test="${requestScope.editable}">
+        <a href="${pageContext.request.contextPath}/edit-group">
+            <img class="icon" src="../images/icons/add.png" alt="">
+        </a>
     </c:if>
 </div>
 <div class="list">
-    <c:forEach var="group" items="${groups}">
-        <a class="link-container" href="students.jsp">
-            <div class="item">
-                <div class="item-name">${group.name}</div>
-                <c:if test="${editable}">
+    <c:forEach var="group" items="${requestScope.groups}">
+        <div class="item">
+            <a class="item-body" href="${pageContext.request.contextPath}/students?groupName=${group.getName()}&groupId=${group.getId()}">
+                <div class="item-name">${group.getName()}</div>
+            </a>
+            <c:if test="${requestScope.editable}">
+                <a href="${pageContext.request.contextPath}/edit-group?id=${group.getId()}">
                     <img class="icon" src="../images/icons/edit.png" alt="">
-                    <img class="icon" src="../images/icons/delete.png" alt="">
-                </c:if>
-            </div>
-        </a>
+                </a>
+                <img class="icon" src="../images/icons/delete.png" alt="" onclick="deleteGroup('${group.getId()}')">
+            </c:if>
+        </div>
     </c:forEach>
 </div>
 </body>

@@ -3,28 +3,24 @@ package com.example.jakartaeelabs.Models;
 import java.util.UUID;
 
 public class Student {
-    private String group;
     private String firstName;
     private String lastName;
     private final String id;
 
-    public Student(String group, String firstName, String lastName) {
-        this.group = group;
+    public Student(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.id = UUID.randomUUID().toString();
     }
 
+    public Student(String firstName, String lastName, String id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.id = id;
+    }
+
     public String getId() {
         return id;
-    }
-
-    public String getGroup() {
-        return group;
-    }
-
-    public void setGroup(String group) {
-        this.group = group;
     }
 
     public String getFirstName() {
