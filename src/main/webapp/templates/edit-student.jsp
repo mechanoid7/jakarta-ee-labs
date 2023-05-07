@@ -15,12 +15,17 @@
 </div>
 <div class="list">
     <form action="${pageContext.request.contextPath}/edit-group" method="POST">
-        <input type="text" name="id" value="${requestScope.student.id}" style="visibility: hidden"/>
+        <input type="text" name="id" value="${requestScope.student.getId()}" disabled
+<%--               style="visibility: hidden"--%>
+        />
+        <input type="text" name="groupId" value="${requestScope.groupId}" disabled
+<%--               style="visibility: hidden"--%>
+        />
         <label title="First Name">
-            <input type="text" name="name" value="${requestScope.group.firstName}" />
+            <input type="text" name="firstName" value="${requestScope.student.getFirstName()}" />
         </label>
         <label title="Last Name">
-            <input type="text" name="name" value="${requestScope.group.lastName}" />
+            <input type="text" name="lastName" value="${requestScope.student.getLastName()}" />
         </label>
         <button type="submit">Save</button>
     </form>

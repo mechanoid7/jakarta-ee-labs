@@ -13,13 +13,15 @@
 <div class="header">
     <h1 class="title">Groups</h1>
     <c:if test="${requestScope.editable}">
-        <img class="icon" src="../images/icons/add.png" alt="">
+        <a href="${pageContext.request.contextPath}/edit-group">
+            <img class="icon" src="../images/icons/add.png" alt="">
+        </a>
     </c:if>
 </div>
 <div class="list">
     <c:forEach var="group" items="${requestScope.groups}">
         <div class="item">
-            <a class="item-body" href="${pageContext.request.contextPath}/students?group=${group.getName()}">
+            <a class="item-body" href="${pageContext.request.contextPath}/students?groupName=${group.getName()}&groupId=${group.getId()}">
                 <div class="item-name">${group.getName()}</div>
             </a>
             <c:if test="${requestScope.editable}">

@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.commons.lang.StringEscapeUtils;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -37,10 +38,8 @@ public class EditGroupController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //    TODO: Add escaping text on edit
-        //    Example of escaping html for prevent XSS:
-        //    String text = "<script>alert('Hello');</script>";
-        //    String escapedText = StringEscapeUtils.escapeHtml(text);
+        String id = req.getAttribute("id").toString(); // group id, if not exist - create
+        String name = StringEscapeUtils.escapeHtml(req.getAttribute("name").toString()); // escape HTML
 
 //        TODO: add redirect to /groups
 

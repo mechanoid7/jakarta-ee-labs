@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.commons.lang.StringEscapeUtils;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -19,9 +20,10 @@ public class EditStudentController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        TODO: add get Student from db
+//        TODO: add get Student from db if 'id' exists
+        String groupId = req.getParameter("groupId");
 
-        Student student = new Student("IO-test", "John", "Doe");
+        Student student = new Student("John", "Doe");
 
         boolean editable = Objects.equals(CookieUtils.getCookie(req, CookieUtils.EDITABLE_COOKIE_PARAM_NAME), "true");
 
@@ -31,17 +33,18 @@ public class EditStudentController extends HttpServlet {
         }
 
         req.setAttribute("student", student);
+        req.setAttribute("groupId", groupId);
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/templates/edit-group.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/templates/edit-student.jsp");
         requestDispatcher.forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //    TODO: Add escaping text on edit
-        //    Example of escaping html for prevent XSS:
-        //    String text = "<script>alert('Hello');</script>";
-        //    String escapedText = StringEscapeUtils.escapeHtml(text);
+        String groupId = req.getAttribute("groupId").toString();
+        String id = req.getAttribute("id").toString(); // student id, if not exist - create
+        String firstName = StringEscapeUtils.escapeHtml(req.getAttribute("firstName").toString()); // escape HTML
+        String lastName = StringEscapeUtils.escapeHtml(req.getAttribute("lastName").toString()); // escape HTML
 
 //        TODO: add redirect to /students?group=<STUDENT GROUP>
 

@@ -18,8 +18,8 @@ import java.util.Objects;
 public class StudentsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String group = req.getParameter("group");
-        System.out.println(">>> PARAMETER: " + group);
+        String groupId = req.getParameter("groupId");
+        String groupName = req.getParameter("groupName");
 
 //      TODO: get students by group
 
@@ -30,9 +30,9 @@ public class StudentsController extends HttpServlet {
 //        students_IO_99.add(new Student("IO-99", "Jane", "Smith"));
 //        students_IO_99.add(new Student("IO-99", "Bob", "Johnson"));
         List<Student> students = new ArrayList<>();
-        students.add(new Student("IO-99", "John", "Doe"));
-        students.add(new Student("IO-99", "Jane", "Smith"));
-        students.add(new Student("IO-99", "Bob", "Johnson"));
+        students.add(new Student("John", "Doe"));
+        students.add(new Student("Jane", "Smith"));
+        students.add(new Student("Bob", "Johnson"));
 
 //        groups.add(new Group("IO-99", students_IO_99));
 //        groups.add(new Group("IO-10", students_IO_10));
@@ -41,6 +41,8 @@ public class StudentsController extends HttpServlet {
         Boolean editable = Objects.equals(CookieUtils.getCookie(req, CookieUtils.EDITABLE_COOKIE_PARAM_NAME), "true");
 
         req.setAttribute("students", students);
+        req.setAttribute("groupId", groupId);
+        req.setAttribute("groupName", groupName);
         req.setAttribute("editable", editable);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/templates/students.jsp");
