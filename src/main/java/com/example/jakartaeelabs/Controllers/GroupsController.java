@@ -1,5 +1,6 @@
 package com.example.jakartaeelabs.Controllers;
 
+import com.example.jakartaeelabs.Database.ManageGroups;
 import com.example.jakartaeelabs.Models.Group;
 import com.example.jakartaeelabs.Models.Student;
 import com.example.jakartaeelabs.Utils.CookieUtils;
@@ -19,17 +20,9 @@ import java.util.Objects;
 public class GroupsController extends HttpServlet {
     //    TODO: add return statuses, like "response.setStatus(HttpServletResponse.SC_OK);"
 
-    //    TODO: Add escaping text on edit
-    //    Example of escaping html for prevent XSS:
-    //    String text = "<script>alert('Hello');</script>";
-    //    String escapedText = StringEscapeUtils.escapeHtml(text);
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Group> groups = new ArrayList<>();
-
-        groups.add(new Group(1, "IO-99"));
-        groups.add(new Group(2, "IO-10"));
-
+        List<Group> groups = ManageGroups.getAllGroups();
 
         Boolean editable = Objects.equals(CookieUtils.getCookie(req, CookieUtils.EDITABLE_COOKIE_PARAM_NAME), "true");
 

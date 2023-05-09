@@ -1,5 +1,6 @@
 package com.example.jakartaeelabs.Database;
 
+import com.example.jakartaeelabs.Models.Group;
 import com.example.jakartaeelabs.Models.Student;
 
 import java.sql.*;
@@ -8,7 +9,7 @@ import java.util.List;
 
 public class ManageStudents {
 
-    private final static Connection connection = Connect.connect();
+    private static Connection connection = Connect.connect();
 
     private final static String DB_FIELD_ID = "id";
     private final static String DB_FIELD_GROUP_ID = "groupId";
@@ -114,8 +115,6 @@ public class ManageStudents {
     }
 
     public static void main(String[] args) {
-
-        ManageStudents app = new ManageStudents();
         // insert three new rows
 //        app.insert(1,"Raw", "Raw");
 //        app.insert(1,"Semifinis", "Apple");
@@ -123,7 +122,12 @@ public class ManageStudents {
 //        app.update(1,2, "Kolya", "Born");
 //        app.delete(3);
 //        app.selectAll();
-        app.getStudent(1);
+//        app.getStudent(1);
+
+        List<Student> students = ManageStudents.getAllStudents();
+        for (int i = 0; i < students.size(); i++) {
+            System.out.println(">>> " + students.get(i).getFirstName());
+        }
     }
 
 }

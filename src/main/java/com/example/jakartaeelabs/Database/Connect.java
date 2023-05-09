@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 
 public class Connect {
-    public static final String DB_PATH = "jdbc:sqlite:src\\main\\java\\com\\example\\jakartaeelabs\\database\\main.db";
+    public static final String DB_PATH = "jdbc:sqlite:src\\main\\java\\com\\example\\jakartaeelabs\\Database\\main.db";
 
     public static Connection connect() {
         Connection connect = null;

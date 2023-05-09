@@ -8,8 +8,8 @@ import java.util.List;
 
 public class ManageGroups {
 
-    private final static Connection connection = Connect.connect();
-    
+    private static final Connection connection = Connect.connect();
+
     private final static String DB_FIELD_ID = "id";
     private final static String DB_FIELD_NAME = "name";
 
@@ -94,7 +94,7 @@ public class ManageGroups {
     }
 
     public static void main(String[] args) {
-        ManageGroups app = new ManageGroups();
+//        ManageGroups app = new ManageGroups();
         // insert three new rows
 //        app.insert("IO-21mn");
 //        app.insert("IO-21mp");
@@ -102,7 +102,11 @@ public class ManageGroups {
 //        app.update(1, "IV-33");
 //        app.delete(6);
 //        app.selectAll();
-        app.getGroup(2);
+        System.out.println(ManageGroups.getGroup(2).getName());
+        List<Group> groups = ManageGroups.getAllGroups();
+        for (int i = 0; i < groups.size(); i++) {
+            System.out.println(">>> " + groups.get(i).getName());
+        }
     }
 
 }
