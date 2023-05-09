@@ -8,17 +8,17 @@ import java.util.List;
 
 public class ManageStudents {
 
-    private final Connection connection = Connect.connect();
+    private final static Connection connection = Connect.connect();
 
     private final static String DB_FIELD_ID = "id";
     private final static String DB_FIELD_GROUP_ID = "groupId";
     private final static String DB_FIELD_FIRST_NAME = "firstName";
     private final static String DB_FIELD_LAST_NAME = "lastName";
 
-    public void insert(int groupId, String firstName, String lastName) {
+    public static void insert(int groupId, String firstName, String lastName) {
         String sql = "INSERT INTO students(groupid,firstName,lastName) VALUES(?,?,?)";
 
-        try (PreparedStatement pstmt = this.connection.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, groupId);
             pstmt.setString(2, firstName);
             pstmt.setString(3, lastName);
@@ -28,13 +28,13 @@ public class ManageStudents {
         }
     }
 
-    public void update(int id, int groupId, String firstName, String lastName) {
+    public static void update(int id, int groupId, String firstName, String lastName) {
         String sql = "UPDATE students SET groupid = ? , "
                 + "firstName = ?, "
                 + "lastName = ? "
                 + "WHERE id = ?";
 
-        try (PreparedStatement pstmt = this.connection.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
             // set the corresponding param
             pstmt.setInt(1, groupId);
@@ -48,10 +48,10 @@ public class ManageStudents {
         }
     }
 
-    public void delete(int id) {
+    public static void delete(int id) {
         String sql = "DELETE FROM students WHERE id = ?";
 
-        try (PreparedStatement pstmt = this.connection.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
             // set the corresponding param
             pstmt.setInt(1, id);
@@ -63,11 +63,11 @@ public class ManageStudents {
         }
     }
 
-    public List<Student> getAllStudents() {
+    public static List<Student> getAllStudents() {
         String sql = "SELECT groupid, id, firstName, lastName FROM students";
         List<Student> students = new ArrayList<>();
 
-        try (Statement stmt = this.connection.createStatement();
+        try (Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
             // loop through the result set
@@ -85,12 +85,12 @@ public class ManageStudents {
         return students;
     }
 
-    public Student getStudent(int id) {
+    public static Student getStudent(int id) {
         String sql = "SELECT groupid, id, firstName, lastName "
                 + "FROM students WHERE id = ?";
         Student student = null;
 
-        try (PreparedStatement pstmt = this.connection.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
             // set the value
             pstmt.setInt(1, id);

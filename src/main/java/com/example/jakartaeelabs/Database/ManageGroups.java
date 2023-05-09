@@ -8,14 +8,15 @@ import java.util.List;
 
 public class ManageGroups {
 
-    private final Connection connection = Connect.connect();
+    private final static Connection connection = Connect.connect();
+    
     private final static String DB_FIELD_ID = "id";
     private final static String DB_FIELD_NAME = "name";
 
-    public void insert(String name) {
+    public static void insert(String name) {
         String sql = "INSERT INTO groups(name) VALUES(?)";
 
-        try (PreparedStatement pstmt = this.connection.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, name);
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -23,11 +24,11 @@ public class ManageGroups {
         }
     }
 
-    public void update(int id, String name) {
+    public static void update(int id, String name) {
         String sql = "UPDATE groups SET name = ? "
                 + "WHERE id = ?";
 
-        try (PreparedStatement pstmt = this.connection.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             // set the corresponding param
             pstmt.setString(1, name);
             pstmt.setInt(2, id);
@@ -38,10 +39,10 @@ public class ManageGroups {
         }
     }
 
-    public void delete(int id) {
+    public static void delete(int id) {
         String sql = "DELETE FROM groups WHERE id = ?";
 
-        try (PreparedStatement pstmt = this.connection.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             // set the corresponding param
             pstmt.setInt(1, id);
             // execute the delete statement
@@ -52,11 +53,11 @@ public class ManageGroups {
         }
     }
 
-    public List<Group> getAllGroups() {
+    public static List<Group> getAllGroups() {
         String sql = "SELECT id, name FROM groups";
         List<Group> groups = new ArrayList<>();
 
-        try (Statement stmt = this.connection.createStatement();
+        try (Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
             // loop through the result set
@@ -69,13 +70,13 @@ public class ManageGroups {
         return groups;
     }
 
-    public Group getGroup(int id) {
+    public static Group getGroup(int id) {
         String sql = "SELECT id, name "
                 + "FROM groups WHERE id = ?";
 
         Group group = null;
 
-        try (PreparedStatement pstmt = this.connection.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
             // set the value
             pstmt.setInt(1, id);
