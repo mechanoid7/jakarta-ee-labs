@@ -8,15 +8,14 @@ import java.util.List;
 
 public class ManageGroups {
 
-    private static final Connection connection = Connect.connect();
-
     private final static String DB_FIELD_ID = "id";
     private final static String DB_FIELD_NAME = "name";
 
     public static void insert(String name) {
         String sql = "INSERT INTO groups(name) VALUES(?)";
 
-        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+        try (Connection connection = Connect.connect();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, name);
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -28,7 +27,8 @@ public class ManageGroups {
         String sql = "UPDATE groups SET name = ? "
                 + "WHERE id = ?";
 
-        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+        try (Connection connection = Connect.connect();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
             // set the corresponding param
             pstmt.setString(1, name);
             pstmt.setInt(2, id);
@@ -42,7 +42,8 @@ public class ManageGroups {
     public static void delete(int id) {
         String sql = "DELETE FROM groups WHERE id = ?";
 
-        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+        try (Connection connection = Connect.connect();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
             // set the corresponding param
             pstmt.setInt(1, id);
             // execute the delete statement
@@ -57,8 +58,9 @@ public class ManageGroups {
         String sql = "SELECT id, name FROM groups";
         List<Group> groups = new ArrayList<>();
 
-        try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        try (Connection connection = Connect.connect();
+             PreparedStatement pstmt = connection.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
 
             // loop through the result set
             while (rs.next()) {
@@ -76,7 +78,8 @@ public class ManageGroups {
 
         Group group = null;
 
-        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+        try (Connection connection = Connect.connect();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
             // set the value
             pstmt.setInt(1, id);
