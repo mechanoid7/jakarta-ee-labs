@@ -30,9 +30,9 @@ public class StudentsController extends HttpServlet {
 //        students_IO_99.add(new Student("IO-99", "Jane", "Smith"));
 //        students_IO_99.add(new Student("IO-99", "Bob", "Johnson"));
         List<Student> students = new ArrayList<>();
-        students.add(new Student("John", "Doe"));
-        students.add(new Student("Jane", "Smith"));
-        students.add(new Student("Bob", "Johnson"));
+        students.add(new Student(5, 1, "John", "Doe"));
+        students.add(new Student(6, 1, "Jane", "Smith"));
+        students.add(new Student(7, 1, "Bob", "Johnson"));
 
 //        groups.add(new Group("IO-99", students_IO_99));
 //        groups.add(new Group("IO-10", students_IO_10));

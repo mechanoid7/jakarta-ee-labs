@@ -24,7 +24,7 @@ public class EditStudentController extends HttpServlet {
         String groupId = req.getParameter("groupId");
         String id = req.getParameter("id"); // student id, if exist - return student with ID {new Student("first name", "last name", "id")}
         
-        Student student = new Student("John", "Doe");
+        Student student = new Student(1, 1, "John", "Doe");
 
         boolean editable = Objects.equals(CookieUtils.getCookie(req, CookieUtils.EDITABLE_COOKIE_PARAM_NAME), "true");
 

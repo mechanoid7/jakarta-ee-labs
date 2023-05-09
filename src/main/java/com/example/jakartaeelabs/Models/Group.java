@@ -4,16 +4,11 @@ import java.util.UUID;
 
 public class Group {
     private String name;
-    private final String id;
+    private final Integer id;
 
-    public Group(String name) {
-        this.name = name;
-        this.id = UUID.randomUUID().toString();
-    }
-
-    public Group(String name, String id) {
-        this.name = name;
+    public Group(Integer id, String name) {
         this.id = id;
+        this.name = name;
     }
 
     public String getName() {
@@ -24,7 +19,7 @@ public class Group {
         this.name = name;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 }

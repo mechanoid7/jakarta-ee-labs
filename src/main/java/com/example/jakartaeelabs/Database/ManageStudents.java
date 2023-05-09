@@ -1,6 +1,10 @@
 package com.example.jakartaeelabs.Database;
 
+import com.example.jakartaeelabs.Models.Student;
+
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ManageStudents {
 
@@ -54,27 +58,32 @@ public class ManageStudents {
         }
     }
 
-    public void selectAll() {
+    public List<Student> getAllStudents() {
         String sql = "SELECT groupid, id, firstName, lastName FROM students";
+        List<Student> students = new ArrayList<>();
 
         try (Statement stmt = this.connection.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
             // loop through the result set
             while (rs.next()) {
-                System.out.println(rs.getInt("groupid") + "\t" +
-                        rs.getInt("id") + "\t" +
-                        rs.getString("firstName") + "\t" +
-                        rs.getString("lastName"));
+                students.add(new Student(
+                        rs.getInt("id"),
+                        rs.getInt("groupId"),
+                        rs.getString("firstName"),
+                        rs.getString("lastName")
+                ));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return students;
     }
 
-    public void getStudent(int id) {
+    public Student getStudent(int id) {
         String sql = "SELECT groupid, id, firstName, lastName "
                 + "FROM students WHERE id = ?";
+        Student student = null;
 
         try (PreparedStatement pstmt = this.connection.prepareStatement(sql)) {
 
@@ -85,14 +94,18 @@ public class ManageStudents {
 
             // loop through the result set
             while (rs.next()) {
-                System.out.println(rs.getInt("groupid") + "\t" +
-                        rs.getInt("id") + "\t" +
-                        rs.getString("firstName") + "\t" +
-                        rs.getString("lastName"));
+                student = new Student(
+                        rs.getInt("id"),
+                        rs.getInt("groupId"),
+                        rs.getString("firstName"),
+                        rs.getString("lastName")
+                );
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
+        return student;
     }
 
     public static void main(String[] args) {

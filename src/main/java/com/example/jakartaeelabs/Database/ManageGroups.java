@@ -1,6 +1,10 @@
 package com.example.jakartaeelabs.Database;
 
+import com.example.jakartaeelabs.Models.Group;
+
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ManageGroups {
 
@@ -46,25 +50,28 @@ public class ManageGroups {
         }
     }
 
-    public void selectAll() {
+    public List<Group> getAllGroups() {
         String sql = "SELECT id, name FROM groups";
+        List<Group> groups = new ArrayList<>();
 
         try (Statement stmt = this.connection.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
             // loop through the result set
             while (rs.next()) {
-                System.out.println(rs.getInt("id") + "\t" +
-                        rs.getString("name"));
+                groups.add(new Group(rs.getInt("id"), rs.getString("name")));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return groups;
     }
 
-    public void getGroup(int id) {
+    public Group getGroup(int id) {
         String sql = "SELECT id, name "
                 + "FROM groups WHERE id = ?";
+
+        Group group = null;
 
         try (PreparedStatement pstmt = this.connection.prepareStatement(sql)) {
 
@@ -75,12 +82,12 @@ public class ManageGroups {
 
             // loop through the result set
             while (rs.next()) {
-                System.out.println(rs.getInt("id") + "\t" +
-                        rs.getString("name"));
+                group = new Group(rs.getInt("id"), rs.getString("name"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return group;
     }
 
     public static void main(String[] args) {

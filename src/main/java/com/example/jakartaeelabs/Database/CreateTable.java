@@ -7,10 +7,10 @@ import java.sql.Statement;
 public class CreateTable {
     private static final Connection connection = Connect.connect();
 
-    public static void createNewTable() {
+    public static void createNewTables() {
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS students (\n"
-                + "	groupid integer NOT NULL,\n"
+                + "	groupId integer NOT NULL,\n"
                 + "	id integer PRIMARY KEY,\n"
                 + "	firstName text NOT NULL,\n"
                 + "	lastName text NOT NULL\n"
@@ -29,6 +29,6 @@ public class CreateTable {
     }
 
     public static void main(String[] args) {
-        createNewTable();
+        createNewTables();
     }
 }

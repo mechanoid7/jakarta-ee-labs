@@ -27,8 +27,8 @@ public class GroupsController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Group> groups = new ArrayList<>();
 
-        groups.add(new Group("IO-99"));
-        groups.add(new Group("IO-10"));
+        groups.add(new Group(1, "IO-99"));
+        groups.add(new Group(2, "IO-10"));
 
 
         Boolean editable = Objects.equals(CookieUtils.getCookie(req, CookieUtils.EDITABLE_COOKIE_PARAM_NAME), "true");
