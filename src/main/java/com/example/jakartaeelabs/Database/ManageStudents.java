@@ -1,29 +1,15 @@
+package com.example.jakartaeelabs.Database;
+
 import java.sql.*;
 
 public class ManageStudents {
 
-    /**
-     * Connect to the test.db database
-     *
-     * @return the Connection object
-     */
-    private Connection connect() {
-        // SQLite connection string
-        String url = "jdbc:sqlite:src\\main\\java\\com\\example\\jakartaeelabs\\database\\new.db";
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(url);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return conn;
-    }
-    
+    private final Connection connection = Connect.connect();
+
     public void insert(int groupid, String firstName, String lastName) {
         String sql = "INSERT INTO students(groupid,firstName,lastName) VALUES(?,?,?)";
 
-        try (Connection conn = this.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = this.connection.prepareStatement(sql)) {
             pstmt.setInt(1, groupid);
             pstmt.setString(2, firstName);
             pstmt.setString(3, lastName);
@@ -39,8 +25,7 @@ public class ManageStudents {
                 + "lastName = ? "
                 + "WHERE id = ?";
 
-        try (Connection conn = this.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = this.connection.prepareStatement(sql)) {
 
             // set the corresponding param
             pstmt.setInt(1, groupid);
@@ -57,8 +42,7 @@ public class ManageStudents {
     public void delete(int id) {
         String sql = "DELETE FROM students WHERE id = ?";
 
-        try (Connection conn = this.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement pstmt = this.connection.prepareStatement(sql)) {
 
             // set the corresponding param
             pstmt.setInt(1, id);
@@ -70,40 +54,15 @@ public class ManageStudents {
         }
     }
 
-    public void selectAll(){
+    public void selectAll() {
         String sql = "SELECT groupid, id, firstName, lastName FROM students";
 
-        try (Connection conn = this.connect();
-             Statement stmt  = conn.createStatement();
-             ResultSet rs    = stmt.executeQuery(sql)){
+        try (Statement stmt = this.connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
 
             // loop through the result set
             while (rs.next()) {
-                System.out.println(rs.getInt("groupid") +  "\t" +
-                        rs.getInt("id") +  "\t" +
-                        rs.getString("firstName") + "\t" +
-                        rs.getString("lastName"));
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void getStudent(int id){
-        String sql = "SELECT groupid, id, firstName, lastName "
-                + "FROM students WHERE id = ?";
-
-        try (Connection conn = this.connect();
-             PreparedStatement pstmt  = conn.prepareStatement(sql)){
-
-            // set the value
-            pstmt.setInt(1,id);
-            //
-            ResultSet rs  = pstmt.executeQuery();
-
-            // loop through the result set
-            while (rs.next()) {
-                System.out.println(rs.getInt("groupid") +  "\t" +
+                System.out.println(rs.getInt("groupid") + "\t" +
                         rs.getInt("id") + "\t" +
                         rs.getString("firstName") + "\t" +
                         rs.getString("lastName"));
@@ -113,9 +72,29 @@ public class ManageStudents {
         }
     }
 
-    /**
-     * @param args the command line arguments
-     */
+    public void getStudent(int id) {
+        String sql = "SELECT groupid, id, firstName, lastName "
+                + "FROM students WHERE id = ?";
+
+        try (PreparedStatement pstmt = this.connection.prepareStatement(sql)) {
+
+            // set the value
+            pstmt.setInt(1, id);
+            //
+            ResultSet rs = pstmt.executeQuery();
+
+            // loop through the result set
+            while (rs.next()) {
+                System.out.println(rs.getInt("groupid") + "\t" +
+                        rs.getInt("id") + "\t" +
+                        rs.getString("firstName") + "\t" +
+                        rs.getString("lastName"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public static void main(String[] args) {
 
         ManageStudents app = new ManageStudents();
