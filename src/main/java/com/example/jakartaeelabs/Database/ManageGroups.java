@@ -39,7 +39,7 @@ public class ManageGroups {
         }
     }
 
-    public static void delete(int id) {
+    public static void deleteById(int id) {
         String sql = "DELETE FROM groups WHERE id = ?";
 
         try (Connection connection = Connect.connect();
@@ -72,7 +72,7 @@ public class ManageGroups {
         return groups;
     }
 
-    public static Group getGroup(int id) {
+    public static Group getGroupById(int id) {
         String sql = "SELECT id, name "
                 + "FROM groups WHERE id = ?";
 
@@ -105,7 +105,7 @@ public class ManageGroups {
 //        app.update(1, "IV-33");
 //        app.delete(6);
 //        app.selectAll();
-        System.out.println(ManageGroups.getGroup(2).getName());
+        System.out.println(ManageGroups.getGroupById(2).getName());
         List<Group> groups = ManageGroups.getAllGroups();
         for (int i = 0; i < groups.size(); i++) {
             System.out.println(">>> " + groups.get(i).getName());

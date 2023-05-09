@@ -14,11 +14,11 @@
     <h1 class="title">Edit Student</h1>
 </div>
 <div class="list">
-    <form action="${pageContext.request.contextPath}/edit-group" method="POST">
-        <input type="text" name="id" value="${requestScope.student.getId()}" disabled
+    <form action="${pageContext.request.contextPath}/edit-student" method="POST">
+        <input type="text" name="id" value="${requestScope.student.getId()}"
 <%--               style="visibility: hidden"--%>
         />
-        <input type="text" name="groupId" value="${requestScope.groupId}" disabled
+        <input type="text" name="groupId" value="${requestScope.group.getId()}"
 <%--               style="visibility: hidden"--%>
         />
         <label title="First Name">

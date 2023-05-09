@@ -15,7 +15,7 @@
 </div>
 <div class="list">
     <form action="${pageContext.request.contextPath}/edit-group" method="POST">
-        <input type="text" name="id" value="${requestScope.group.id}" disabled
+        <input type="text" name="id" value="${requestScope.group.id}"
 <%--               style="visibility: hidden"--%>
         />
         <label title="Name">

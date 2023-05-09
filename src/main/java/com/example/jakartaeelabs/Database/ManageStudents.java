@@ -1,6 +1,5 @@
 package com.example.jakartaeelabs.Database;
 
-import com.example.jakartaeelabs.Models.Group;
 import com.example.jakartaeelabs.Models.Student;
 
 import java.sql.*;
@@ -49,7 +48,7 @@ public class ManageStudents {
         }
     }
 
-    public static void delete(int id) {
+    public static void deleteById(int id) {
         String sql = "DELETE FROM students WHERE id = ?";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -65,7 +64,7 @@ public class ManageStudents {
     }
 
     public static List<Student> getAllStudents() {
-        String sql = "SELECT groupid, id, firstName, lastName FROM students";
+        String sql = "SELECT groupId, id, firstName, lastName FROM students";
         List<Student> students = new ArrayList<>();
 
         try (Statement stmt = connection.createStatement();
@@ -86,7 +85,31 @@ public class ManageStudents {
         return students;
     }
 
-    public static Student getStudent(int id) {
+    public static List<Student> getStudentsByGroupId(Integer groupId) {
+        String sql = "SELECT id, groupId, firstName, lastName FROM students WHERE groupId = ?";
+        List<Student> students = new ArrayList<>();
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setInt(1, groupId);
+            ResultSet rs = pstmt.executeQuery();
+
+            // loop through the result set
+            while (rs.next()) {
+                students.add(new Student(
+                        rs.getInt(DB_FIELD_ID),
+                        rs.getInt(DB_FIELD_GROUP_ID),
+                        rs.getString(DB_FIELD_FIRST_NAME),
+                        rs.getString(DB_FIELD_LAST_NAME)
+                ));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return students;
+    }
+
+    public static Student getStudentById(int id) {
         String sql = "SELECT groupid, id, firstName, lastName "
                 + "FROM students WHERE id = ?";
         Student student = null;

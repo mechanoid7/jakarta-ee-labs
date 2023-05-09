@@ -20,13 +20,18 @@
     </c:if>
 </div>
 <div class="list">
+    <c:if test="${requestScope.students.size() == 0}">
+        <div class="not-exist">
+            Students not exist
+        </div>
+    </c:if>
     <c:forEach var="student" items="${requestScope.students}">
         <div class="item">
             <div class="item-body">
                 <div class="item-name">${student.getFirstName()} ${student.getLastName()}</div>
             </div>
             <c:if test="${requestScope.editable}">
-                <a href="${pageContext.request.contextPath}/edit-student?id=${student.getId()}">
+                <a href="${pageContext.request.contextPath}/edit-student?id=${student.getId()}&groupId=${requestScope.groupId}">
                     <img class="icon" src="../images/icons/edit.png" alt="">
                 </a>
                 <img class="icon" src="../images/icons/delete.png" alt="" onclick="deleteStudent('${student.getId()}')">

@@ -1,5 +1,6 @@
 package com.example.jakartaeelabs.Controllers;
 
+import com.example.jakartaeelabs.Database.ManageGroups;
 import com.example.jakartaeelabs.Models.Group;
 import com.example.jakartaeelabs.Utils.CookieUtils;
 import jakarta.servlet.RequestDispatcher;
@@ -19,12 +20,12 @@ public class EditGroupController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        TODO: add get Group from db
-
         String id = req.getParameter("id"); // group id, if exist - return group with ID {new Group("name", "id")}
+        Group group = new Group("");
 
-
-        Group group = new Group(3, "IO-test");
+        if (id != null) {
+            group = ManageGroups.getGroupById(Integer.parseInt(id));
+        }
 
         boolean editable = Objects.equals(CookieUtils.getCookie(req, CookieUtils.EDITABLE_COOKIE_PARAM_NAME), "true");
 
@@ -41,11 +42,17 @@ public class EditGroupController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String id = req.getAttribute("id").toString(); // group id, if not exist - create
-        String name = StringEscapeUtils.escapeHtml(req.getAttribute("name").toString()); // escape HTML
+//        System.out.println(">>> REQ id: " + req.getParameter("id"));
+//        System.out.println(">>> REQ name: " + req.getParameter("name"));
+        String id = req.getParameter("id");
+        String name = StringEscapeUtils.escapeHtml(req.getParameter("name")); // escape HTML
 
-//        TODO: add redirect to /groups
+        if (id == null || id.equals("")) {
+            ManageGroups.insert(name);
+        } else {
+            ManageGroups.update(Integer.parseInt(id), name);
+        }
 
-        // create if haven`t ID in DB, else - edit(update)
+        resp.sendRedirect("/groups");
     }
 }

@@ -2,7 +2,6 @@ package com.example.jakartaeelabs.Controllers;
 
 import com.example.jakartaeelabs.Database.ManageGroups;
 import com.example.jakartaeelabs.Models.Group;
-import com.example.jakartaeelabs.Models.Student;
 import com.example.jakartaeelabs.Utils.CookieUtils;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -35,7 +34,6 @@ public class GroupsController extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
-
-//        delete here
+        ManageGroups.deleteById(Integer.parseInt(id));
     }
 }

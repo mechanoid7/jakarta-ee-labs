@@ -19,9 +19,14 @@
     </c:if>
 </div>
 <div class="list">
+    <c:if test="${requestScope.groups.size() == 0}">
+        <div class="not-exist">
+            Groups not exist
+        </div>
+    </c:if>
     <c:forEach var="group" items="${requestScope.groups}">
         <div class="item">
-            <a class="item-body" href="${pageContext.request.contextPath}/students?groupName=${group.getName()}&groupId=${group.getId()}">
+            <a class="item-body" href="${pageContext.request.contextPath}/students?groupId=${group.getId()}">
                 <div class="item-name">${group.getName()}</div>
             </a>
             <c:if test="${requestScope.editable}">

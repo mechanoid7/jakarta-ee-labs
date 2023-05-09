@@ -4,10 +4,14 @@ import java.util.UUID;
 
 public class Group {
     private String name;
-    private final Integer id;
+    private Integer id;
 
     public Group(Integer id, String name) {
         this.id = id;
+        this.name = name;
+    }
+
+    public Group(String name) {
         this.name = name;
     }
 
