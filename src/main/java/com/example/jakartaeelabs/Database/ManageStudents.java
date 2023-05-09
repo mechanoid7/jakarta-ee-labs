@@ -10,11 +10,16 @@ public class ManageStudents {
 
     private final Connection connection = Connect.connect();
 
-    public void insert(int groupid, String firstName, String lastName) {
+    private final static String DB_FIELD_ID = "id";
+    private final static String DB_FIELD_GROUP_ID = "groupId";
+    private final static String DB_FIELD_FIRST_NAME = "firstName";
+    private final static String DB_FIELD_LAST_NAME = "lastName";
+
+    public void insert(int groupId, String firstName, String lastName) {
         String sql = "INSERT INTO students(groupid,firstName,lastName) VALUES(?,?,?)";
 
         try (PreparedStatement pstmt = this.connection.prepareStatement(sql)) {
-            pstmt.setInt(1, groupid);
+            pstmt.setInt(1, groupId);
             pstmt.setString(2, firstName);
             pstmt.setString(3, lastName);
             pstmt.executeUpdate();
@@ -23,7 +28,7 @@ public class ManageStudents {
         }
     }
 
-    public void update(int id, int groupid, String firstName, String lastName) {
+    public void update(int id, int groupId, String firstName, String lastName) {
         String sql = "UPDATE students SET groupid = ? , "
                 + "firstName = ?, "
                 + "lastName = ? "
@@ -32,7 +37,7 @@ public class ManageStudents {
         try (PreparedStatement pstmt = this.connection.prepareStatement(sql)) {
 
             // set the corresponding param
-            pstmt.setInt(1, groupid);
+            pstmt.setInt(1, groupId);
             pstmt.setString(2, firstName);
             pstmt.setString(3, lastName);
             pstmt.setInt(4, id);
@@ -68,10 +73,10 @@ public class ManageStudents {
             // loop through the result set
             while (rs.next()) {
                 students.add(new Student(
-                        rs.getInt("id"),
-                        rs.getInt("groupId"),
-                        rs.getString("firstName"),
-                        rs.getString("lastName")
+                        rs.getInt(DB_FIELD_ID),
+                        rs.getInt(DB_FIELD_GROUP_ID),
+                        rs.getString(DB_FIELD_FIRST_NAME),
+                        rs.getString(DB_FIELD_LAST_NAME)
                 ));
             }
         } catch (SQLException e) {
@@ -95,10 +100,10 @@ public class ManageStudents {
             // loop through the result set
             while (rs.next()) {
                 student = new Student(
-                        rs.getInt("id"),
-                        rs.getInt("groupId"),
-                        rs.getString("firstName"),
-                        rs.getString("lastName")
+                        rs.getInt(DB_FIELD_ID),
+                        rs.getInt(DB_FIELD_GROUP_ID),
+                        rs.getString(DB_FIELD_FIRST_NAME),
+                        rs.getString(DB_FIELD_LAST_NAME)
                 );
             }
         } catch (SQLException e) {

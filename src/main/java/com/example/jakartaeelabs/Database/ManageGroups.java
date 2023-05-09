@@ -9,6 +9,8 @@ import java.util.List;
 public class ManageGroups {
 
     private final Connection connection = Connect.connect();
+    private final static String DB_FIELD_ID = "id";
+    private final static String DB_FIELD_NAME = "name";
 
     public void insert(String name) {
         String sql = "INSERT INTO groups(name) VALUES(?)";
@@ -59,7 +61,7 @@ public class ManageGroups {
 
             // loop through the result set
             while (rs.next()) {
-                groups.add(new Group(rs.getInt("id"), rs.getString("name")));
+                groups.add(new Group(rs.getInt(DB_FIELD_ID), rs.getString(DB_FIELD_NAME)));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -82,7 +84,7 @@ public class ManageGroups {
 
             // loop through the result set
             while (rs.next()) {
-                group = new Group(rs.getInt("id"), rs.getString("name"));
+                group = new Group(rs.getInt(DB_FIELD_ID), rs.getString(DB_FIELD_NAME));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
