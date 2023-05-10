@@ -87,6 +87,11 @@
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.41.2.1</version>
         </dependency>
+        <dependency>
+            <groupId>jakarta.ejb</groupId>
+            <artifactId>jakarta.ejb-api</artifactId>
+            <version>3.2.6</version>
+        </dependency>
     </dependencies>
 
     <build>
