@@ -2,7 +2,10 @@ package com.example.jakartaeelabs.Database;
 
 import com.example.jakartaeelabs.Models.Group;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,5 +114,4 @@ public class ManageGroups {
             System.out.println(">>> " + groups.get(i).getName());
         }
     }
-
 }

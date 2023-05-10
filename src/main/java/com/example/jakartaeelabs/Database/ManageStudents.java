@@ -29,7 +29,7 @@ public class ManageStudents {
     }
 
     public static void update(int id, int groupId, String firstName, String lastName) {
-        String sql = "UPDATE students SET groupid = ? , "
+        String sql = "UPDATE students SET groupId = ? , "
                 + "firstName = ?, "
                 + "lastName = ? "
                 + "WHERE id = ?";

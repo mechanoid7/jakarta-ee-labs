@@ -42,8 +42,6 @@ public class EditGroupController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        System.out.println(">>> REQ id: " + req.getParameter("id"));
-//        System.out.println(">>> REQ name: " + req.getParameter("name"));
         String id = req.getParameter("id");
         String name = StringEscapeUtils.escapeHtml(req.getParameter("name")); // escape HTML
 

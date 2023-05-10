@@ -54,11 +54,6 @@ public class EditStudentController extends HttpServlet {
         String firstName = StringEscapeUtils.escapeHtml(req.getParameter("firstName")); // escape HTML
         String lastName = StringEscapeUtils.escapeHtml(req.getParameter("lastName")); // escape HTML
 
-        System.out.println(">>> REQ id: " + id);
-        System.out.println(">>> REQ groupId: " + groupId);
-        System.out.println(">>> REQ firstName: " + firstName);
-        System.out.println(">>> REQ lastName: " + lastName);
-
         if (id == null || id.equals("")) {
             ManageStudents.insert(Integer.parseInt(groupId), firstName, lastName);
         } else {

@@ -5,13 +5,16 @@
 <html>
 <head>
     <title>${requestScope.groupName} Students</title>
-    <link rel="stylesheet/less" type="text/css" href="../styles/students.less"/>
+    <link rel="stylesheet/less" type="text/css" href="../styles/base.less"/>
     <link rel="stylesheet/less" type="text/css" href="../styles/items-list.less"/>
     <script src="https://cdn.jsdelivr.net/npm/less"></script>
     <script src="../scripts/api.js"></script>
 </head>
 <body>
 <div class="header">
+    <a href="${pageContext.request.contextPath}/groups">
+        <img class="icon" src="../images/icons/back.png" alt="">
+    </a>
     <h1 class="title">${requestScope.groupName} Students</h1>
     <c:if test="${requestScope.editable}">
         <a href="${pageContext.request.contextPath}/edit-student?groupId=${requestScope.groupId}">

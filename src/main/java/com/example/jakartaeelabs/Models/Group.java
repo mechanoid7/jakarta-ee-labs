@@ -1,7 +1,5 @@
 package com.example.jakartaeelabs.Models;
 
-import java.util.UUID;
-
 public class Group {
     private String name;
     private Integer id;
