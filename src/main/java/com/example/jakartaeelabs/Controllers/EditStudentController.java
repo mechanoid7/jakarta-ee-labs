@@ -1,5 +1,7 @@
 package com.example.jakartaeelabs.Controllers;
 
+import com.example.jakartaeelabs.Database.ManageGroups;
+import com.example.jakartaeelabs.Database.ManageStudents;
 import com.example.jakartaeelabs.Models.Group;
 import com.example.jakartaeelabs.Models.Student;
 import com.example.jakartaeelabs.Utils.CookieUtils;
@@ -23,8 +25,13 @@ public class EditStudentController extends HttpServlet {
 //        TODO: add get Student from db if 'id' exists
         String groupId = req.getParameter("groupId");
         String id = req.getParameter("id"); // student id, if exist - return student with ID {new Student("first name", "last name", "id")}
-        
-        Student student = new Student("John", "Doe");
+
+        Group group = ManageGroups.getGroupById(Integer.parseInt(groupId));
+
+        Student student = new Student(Integer.parseInt(groupId), "", "");
+        if (id != null) {
+            student = ManageStudents.getStudentById(Integer.parseInt(id));
+        }
 
         boolean editable = Objects.equals(CookieUtils.getCookie(req, CookieUtils.EDITABLE_COOKIE_PARAM_NAME), "true");
 
@@ -34,7 +41,7 @@ public class EditStudentController extends HttpServlet {
         }
 
         req.setAttribute("student", student);
-        req.setAttribute("groupId", groupId);
+        req.setAttribute("group", group);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/templates/edit-student.jsp");
         requestDispatcher.forward(req, resp);
@@ -42,13 +49,17 @@ public class EditStudentController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String groupId = req.getAttribute("groupId").toString();
-        String id = req.getAttribute("id").toString(); // student id, if not exist - create
-        String firstName = StringEscapeUtils.escapeHtml(req.getAttribute("firstName").toString()); // escape HTML
-        String lastName = StringEscapeUtils.escapeHtml(req.getAttribute("lastName").toString()); // escape HTML
+        String groupId = req.getParameter("groupId");
+        String id = req.getParameter("id"); // student id, if not exist - create
+        String firstName = StringEscapeUtils.escapeHtml(req.getParameter("firstName")); // escape HTML
+        String lastName = StringEscapeUtils.escapeHtml(req.getParameter("lastName")); // escape HTML
 
-//        TODO: add redirect to /students?group=<STUDENT GROUP>
+        if (id == null || id.equals("")) {
+            ManageStudents.insert(Integer.parseInt(groupId), firstName, lastName);
+        } else {
+            ManageStudents.update(Integer.parseInt(id), Integer.parseInt(groupId), firstName, lastName);
+        }
 
-        // create if haven`t ID in DB, else - edit(update)
+        resp.sendRedirect("/students?groupId=" + groupId);
     }
 }

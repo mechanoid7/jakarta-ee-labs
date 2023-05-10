@@ -6,6 +6,12 @@
     gap: 5px;
     width: max(250px, 30vw);
 
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
     .link-container {
         text-decoration: unset;
     }
@@ -33,6 +39,10 @@
             &:hover {
                 background: @tale-bg-hover-color;
             }
+        }
+
+        & > a {
+            display: flex;
         }
 
         .icon {

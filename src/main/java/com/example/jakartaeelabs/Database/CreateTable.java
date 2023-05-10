@@ -1,27 +1,16 @@
-package net.sqlitetutorial;
+package com.example.jakartaeelabs.Database;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- *
- * @author sqlitetutorial.net
- */
 public class CreateTable {
+    private static final Connection connection = Connect.connect();
 
-    /**
-     * Create a new table in the test database
-     *
-     */
-    public static void createNewTable() {
-        // SQLite connection string
-        String url = "jdbc:sqlite:src\\main\\java\\com\\example\\jakartaeelabs\\database\\new.db";
-
+    public static void createNewTables() {
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS students (\n"
-                + "	groupid integer NOT NULL,\n"
+                + "	groupId integer NOT NULL,\n"
                 + "	id integer PRIMARY KEY,\n"
                 + "	firstName text NOT NULL,\n"
                 + "	lastName text NOT NULL\n"
@@ -31,8 +20,7 @@ public class CreateTable {
                 + "	name text NOT NULL\n"
                 + ");";
 
-        try (Connection conn = DriverManager.getConnection(url);
-             Statement stmt = conn.createStatement()) {
+        try (Statement stmt = connection.createStatement()) {
             // create a new table
             stmt.execute(sql);
         } catch (SQLException e) {
@@ -40,11 +28,7 @@ public class CreateTable {
         }
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        createNewTable();
+        createNewTables();
     }
-
 }

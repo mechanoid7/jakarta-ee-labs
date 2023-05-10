@@ -4,23 +4,22 @@
 <html>
 <head>
     <title>Edit Student</title>
-    <link rel="stylesheet/less" type="text/css" href="../styles/groups.less"/>
+    <link rel="stylesheet/less" type="text/css" href="../styles/base.less"/>
     <link rel="stylesheet/less" type="text/css" href="../styles/items-list.less"/>
     <script src="https://cdn.jsdelivr.net/npm/less"></script>
     <script src="../scripts/api.js"></script>
 </head>
 <body>
 <div class="header">
+    <a href="${pageContext.request.contextPath}/students?groupId=${requestScope.group.getId()}">
+        <img class="icon" src="../images/icons/back.png" alt="">
+    </a>
     <h1 class="title">Edit Student</h1>
 </div>
 <div class="list">
-    <form action="${pageContext.request.contextPath}/edit-group" method="POST">
-        <input type="text" name="id" value="${requestScope.student.getId()}" disabled
-<%--               style="visibility: hidden"--%>
-        />
-        <input type="text" name="groupId" value="${requestScope.groupId}" disabled
-<%--               style="visibility: hidden"--%>
-        />
+    <form action="${pageContext.request.contextPath}/edit-student" method="POST">
+        <input type="text" name="id" value="${requestScope.student.getId()}" hidden/>
+        <input type="text" name="groupId" value="${requestScope.group.getId()}" hidden/>
         <label title="First Name">
             <input type="text" name="firstName" value="${requestScope.student.getFirstName()}" />
         </label>
